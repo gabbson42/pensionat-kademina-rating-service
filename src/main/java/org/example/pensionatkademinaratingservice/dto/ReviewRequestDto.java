@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Min;
 
 public class ReviewRequestDto {
 
-    private Long customerId;
+    private int customerId;
     private int roomId;
 
     @Min(1)
@@ -24,7 +24,7 @@ public class ReviewRequestDto {
         this.comment = comment;
     }
 
-    public Long getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 

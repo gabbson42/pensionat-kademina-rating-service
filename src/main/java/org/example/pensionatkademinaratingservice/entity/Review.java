@@ -17,7 +17,7 @@ public class Review {
     private LocalDate date;
 
 
-    Review(){
+    public Review(){
 
     }
 
