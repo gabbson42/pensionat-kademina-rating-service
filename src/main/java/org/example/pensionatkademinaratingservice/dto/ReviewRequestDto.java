@@ -1,23 +1,27 @@
 package org.example.pensionatkademinaratingservice.dto;
 
-
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 public class ReviewRequestDto {
 
+    @NotNull(message = "Needs customer ID")
     private Long customerId;
-    private int roomId;
 
-    @Min(1)
-    @Max(5)
+    @NotNull(message = "Room ID is needed")
+    private Long roomId;
+
+    @Min(value = 1, message = "Rating least 1")
+    @Max(value = 5, message = "Rating max 5")
     private int rating;
+
     private String comment;
 
     public ReviewRequestDto() {
     }
 
-    public ReviewRequestDto(Long customerId, int roomId, int rating, String comment) {
+    public ReviewRequestDto(Long customerId, Long roomId, int rating, String comment) {
         this.customerId = customerId;
         this.roomId = roomId;
         this.rating = rating;
@@ -32,11 +36,11 @@ public class ReviewRequestDto {
         this.customerId = customerId;
     }
 
-    public int getRoomId() {
+    public Long getRoomId() {
         return roomId;
     }
 
-    public void setRoomId(int roomId) {
+    public void setRoomId(Long roomId) {
         this.roomId = roomId;
     }
 
