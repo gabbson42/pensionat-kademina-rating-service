@@ -1,41 +1,67 @@
 package org.example.pensionatkademinaratingservice.service;
 
+import org.example.pensionatkademinaratingservice.dto.CheckResponseDto;
 import org.example.pensionatkademinaratingservice.dto.ReviewRequestDto;
 import org.example.pensionatkademinaratingservice.dto.ReviewResponseDto;
 import org.example.pensionatkademinaratingservice.entity.Review;
 import org.example.pensionatkademinaratingservice.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClient;
 
 import java.time.LocalDate;
+
 
 @Service
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
+    private final RestClient restClient;
 
 
-    public ReviewService(ReviewRepository reviewRepository) {
+    public ReviewService(ReviewRepository reviewRepository,RestClient.Builder builder ) {
         this.reviewRepository = reviewRepository;
+        this.restClient = builder.baseUrl("BOKING API").build();
+
     }
+
+
+
+
+
+
 
 
     public ReviewResponseDto createReview(ReviewRequestDto reviewRequestDto){
 
-        int customerId = reviewRequestDto.getCustomerId();
-        int roomId = reviewRequestDto.getRoomId();
+        Long customerId = reviewRequestDto.getCustomerId();
+        Long roomId = reviewRequestDto.getRoomId();
         int rating = reviewRequestDto.getRating();
         String comment = reviewRequestDto.getComment();
         LocalDate date = LocalDate.now();
 
+        CheckResponseDto checkResponseDto = restClient
+                .get()
+                .uri("endpoint")
+                .retrieve()
+                .body(CheckResponseDto.class);
+
+        if (!checkResponseDto.isBooked()){
+            throw new RuntimeException();
+
+        }
         Review review = new Review(null,customerId,roomId,rating,comment,date);
+        Review result = reviewRepository.save(review);
+
 
         // customerName ska hämtas från en annan API.
-        String reviewCustumerNmae = "Raul";
+        String reviewCustomerName = "Raul";
 
-
-
-
-        return new ReviewResponseDto(review.getCustomerId(),reviewCustumerNmae,roomId, rating,comment,date );
+        return new ReviewResponseDto(result.getCustomerId(),
+                reviewCustomerName,
+                result.getRoomId(),
+                result.getRating(),
+                result.getComment(),
+                result.getDate() );
 
     }
 }

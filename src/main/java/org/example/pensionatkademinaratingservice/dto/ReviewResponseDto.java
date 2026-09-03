@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 public class ReviewResponseDto {
 
-    private int customerId;
+    private Long customerId;
     private String customerName; // logik för att hämta customer name.
-    private int roomId;
+    private Long roomId;
     private int rating;
     private String comment;
     private LocalDate date;
@@ -14,7 +14,7 @@ public class ReviewResponseDto {
     public ReviewResponseDto() {
     }
 
-    public ReviewResponseDto(int customerId, String customerName, int roomId, int rating, String comment, LocalDate date) {
+    public ReviewResponseDto(Long customerId, String customerName, Long roomId, int rating, String comment, LocalDate date) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.roomId = roomId;
@@ -23,11 +23,11 @@ public class ReviewResponseDto {
         this.date = date;
     }
 
-    public int getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
@@ -39,11 +39,11 @@ public class ReviewResponseDto {
         this.customerName = customerName;
     }
 
-    public int getRoomId() {
+    public Long getRoomId() {
         return roomId;
     }
 
-    public void setRoomId(int roomId) {
+    public void setRoomId(Long roomId) {
         this.roomId = roomId;
     }
 

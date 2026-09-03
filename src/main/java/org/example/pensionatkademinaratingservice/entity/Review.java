@@ -10,8 +10,8 @@ public class Review {
 
     @Id
     private Long id;
-    private int customerId;
-    private int roomId;
+    private Long customerId;
+    private Long roomId;
     private int rating;
     private String comment;
     private LocalDate date;
@@ -21,7 +21,7 @@ public class Review {
 
     }
 
-    public Review(Long id, int customerId, int roomId, int rating, String comment, LocalDate date) {
+    public Review(Long id, Long customerId, Long roomId, int rating, String comment, LocalDate date) {
         this.id = id;
         this.customerId = customerId;
         this.roomId = roomId;
@@ -38,19 +38,19 @@ public class Review {
         this.id = id;
     }
 
-    public int getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
-    public int getRoomId() {
+    public Long getRoomId() {
         return roomId;
     }
 
-    public void setRoomId(int roomId) {
+    public void setRoomId(Long roomId) {
         this.roomId = roomId;
     }
 
