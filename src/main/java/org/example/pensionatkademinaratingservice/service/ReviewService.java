@@ -5,8 +5,10 @@ import org.example.pensionatkademinaratingservice.dto.ReviewRequestDto;
 import org.example.pensionatkademinaratingservice.dto.ReviewResponseDto;
 import org.example.pensionatkademinaratingservice.entity.Review;
 import org.example.pensionatkademinaratingservice.repository.ReviewRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 
@@ -26,11 +28,6 @@ public class ReviewService {
 
 
 
-
-
-
-
-
     public ReviewResponseDto createReview(ReviewRequestDto reviewRequestDto){
 
         Long customerId = reviewRequestDto.getCustomerId();
@@ -41,12 +38,16 @@ public class ReviewService {
 
         CheckResponseDto checkResponseDto = restClient
                 .get()
-                .uri("endpoint")
+                .uri("/api/bookings/check?customerId={customerId}&roomId={roomId}",
+                        customerId,roomId)
                 .retrieve()
                 .body(CheckResponseDto.class);
 
-        if (!checkResponseDto.isBooked()){
-            throw new RuntimeException();
+        if (checkResponseDto == null || !checkResponseDto.isBooked()){
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "You have not booked this room"
+            );
 
         }
         Review review = new Review(null,customerId,roomId,rating,comment,date);
