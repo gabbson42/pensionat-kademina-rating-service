@@ -2,6 +2,8 @@ package org.example.pensionatkademinaratingservice.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 import java.time.LocalDate;
 
@@ -9,6 +11,7 @@ import java.time.LocalDate;
 public class Review {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long customerId;
     private Long roomId;
