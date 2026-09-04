@@ -23,7 +23,7 @@ public class ReviewController {
     public ReviewResponseDto createReview (
             @Valid @RequestBody ReviewRequestDto reviewRequestDto){
 
-        return reviewService
+        return reviewService.createReview(reviewRequestDto);
     }
 
 }
