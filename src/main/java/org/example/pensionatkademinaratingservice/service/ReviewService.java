@@ -1,5 +1,6 @@
 package org.example.pensionatkademinaratingservice.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.example.pensionatkademinaratingservice.dto.CheckResponseDto;
 import org.example.pensionatkademinaratingservice.dto.ReviewRequestDto;
 import org.example.pensionatkademinaratingservice.dto.ReviewResponseDto;
@@ -20,12 +21,15 @@ public class ReviewService {
     private final RestClient restClient;
 
 
-    public ReviewService(ReviewRepository reviewRepository,RestClient.Builder builder ) {
+    public ReviewService(
+            ReviewRepository reviewRepository,
+            @Value("${booking-service.url}") String bookingServiceUrl) {
+
         this.reviewRepository = reviewRepository;
-        this.restClient = builder.baseUrl("BOKING API").build();
-
+        this.restClient = RestClient.builder()
+                .baseUrl(bookingServiceUrl)
+                .build();
     }
-
 
 
     public ReviewResponseDto createReview(ReviewRequestDto reviewRequestDto){
