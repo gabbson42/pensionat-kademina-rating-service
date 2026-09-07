@@ -1,0 +1,9 @@
+POST http://localhost:8083/api/reviews
+Content-Type: application/json
+
+{
+  "customerId": 7,
+  "roomId": 3,
+  "rating": 5,
+  "comment": "Bra rum"
+}
