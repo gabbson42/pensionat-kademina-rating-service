@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.server.ResponseStatusException;
+import java.util.List;
 
 import java.time.LocalDate;
 
@@ -67,6 +68,25 @@ public class ReviewService {
                 result.getRating(),
                 result.getComment(),
                 result.getDate() );
+
+    }
+    public List<ReviewResponseDto> getAllReviews() {
+        List<ReviewResponseDto> reviews = reviewRepository.findAll()
+                .stream()
+                .map(review -> new ReviewResponseDto(
+                        review.getCustomerId(),
+                        null,
+                        review.getRoomId(),
+                        review.getRating(),
+                        review.getComment(),
+                        review.getDate()
+                ))
+
+                .toList();
+
+        return reviews;
+
+
 
     }
 }
