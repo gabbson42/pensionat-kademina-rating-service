@@ -17,7 +17,7 @@ spec:
           image: pensionat-kademina-full-project-rating-service
           imagePullPolicy: Never
           ports:
-            - containerPort: 8083
+            - containerPort: 8080
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mysql://rating-db:3306/rating_db
@@ -39,4 +39,4 @@ spec:
     app: rating-service
   ports:
     - port: 8083
-      targetPort: 8083
+      targetPort: 8080
