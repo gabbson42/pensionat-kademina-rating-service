@@ -55,7 +55,7 @@ public class ReviewIntegrationTest {
     @Test
     void createReview() throws Exception{
 
-        stubFor(get(urlPathEqualTo("/booking/api/bookings/check"))
+        stubFor(get(urlPathEqualTo("/api/bookings/check"))
                 .withQueryParam("customerId", equalTo("1"))
                 .withQueryParam("roomId", equalTo("1"))
                 .willReturn(aResponse()

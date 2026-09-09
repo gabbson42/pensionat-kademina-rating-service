@@ -43,7 +43,7 @@ public class ReviewService {
 
         CheckResponseDto checkResponseDto = restClient
                 .get()
-                .uri("/booking/api/bookings/check?customerId={customerId}&roomId={roomId}",
+                .uri("/api/bookings/check?customerId={customerId}&roomId={roomId}",
                         customerId,roomId)
                 .retrieve()
                 .body(CheckResponseDto.class);
@@ -71,7 +71,6 @@ public class ReviewService {
                 .stream()
                 .map(review -> new ReviewResponseDto(
                         review.getCustomerId(),
-                        null,
                         review.getRoomId(),
                         review.getRating(),
                         review.getComment(),
