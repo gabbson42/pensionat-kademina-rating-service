@@ -42,7 +42,7 @@ public class ReviewService {
 
         CheckResponseDto checkResponseDto = restClient
                 .get()
-                .uri("/api/bookings/check?customerId={customerId}&roomId={roomId}",
+                .uri("/booking/api/bookings/check?customerId={customerId}&roomId={roomId}",
                         customerId,roomId)
                 .retrieve()
                 .body(CheckResponseDto.class);
@@ -58,11 +58,7 @@ public class ReviewService {
         Review result = reviewRepository.save(review);
 
 
-        // customerName ska hämtas från en annan API.
-        String reviewCustomerName = "Raul";
-
         return new ReviewResponseDto(result.getCustomerId(),
-                reviewCustomerName,
                 result.getRoomId(),
                 result.getRating(),
                 result.getComment(),
