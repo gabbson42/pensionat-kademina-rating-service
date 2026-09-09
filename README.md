@@ -112,6 +112,4 @@ kubectl apply -f k8s/rating-service.yaml
 - `customerName` on a review is currently hardcoded/left null rather than resolved from the customer service — a future enhancement would be to call the customer service to enrich review responses with the guest's actual name.
 
 ## Notes
-
-- This service currently has no description or topics set on GitHub — feel free to update the repo "About" section to link back here.
 - The dependency on the booking service is a hard runtime dependency for writes (`POST /api/reviews`) but not for reads (`GET /api/reviews`).
