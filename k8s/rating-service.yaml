@@ -13,8 +13,8 @@ spec:
         app: rating-service
     spec:
       containers:
-        - name: pensionat-kademina-full-project-rating-service
-          image: pensionat-kademina-full-project-rating-service
+        - name: rating-service
+          image: rating-service
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
